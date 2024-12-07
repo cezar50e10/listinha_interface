@@ -4,13 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { AppRoutingModule } from './app-routing.module'; 
 
 
 @NgModule({
+  
   imports: [
     BrowserModule,
-    MatButtonModule,  // Adicione os módulos que deseja usar
-    MatToolbarModule  // Adicione os módulos que deseja usar
+    MatButtonModule,  
+    MatToolbarModule,
+    AppRoutingModule  
   ],
   providers: [],
   bootstrap: []

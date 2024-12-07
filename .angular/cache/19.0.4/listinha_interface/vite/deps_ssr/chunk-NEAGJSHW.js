@@ -5535,7 +5535,6 @@ export {
   RippleRenderer,
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRippleModule,
-  MatPseudoCheckboxModule,
-  MatRippleLoader
+  MatPseudoCheckboxModule
 };
-//# sourceMappingURL=chunk-AIN72JBZ.js.map
+//# sourceMappingURL=chunk-NEAGJSHW.js.map

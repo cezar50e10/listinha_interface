@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 
-import { MenuComponent } from './menu/menu.component';
+
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { NovaListaComponent } from "./paginas/nova-lista/nova-lista.component";
+
 
 @Component({
   selector: 'app-root',
@@ -16,8 +18,9 @@ import { RouterOutlet } from '@angular/router';
     MatListModule,
     MatToolbarModule,
     MatIconModule,
-    RouterOutlet,
-    MenuComponent],
+    RouterModule,
+    NovaListaComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

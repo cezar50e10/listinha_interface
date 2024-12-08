@@ -6,8 +6,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NovaListaComponent } from "./paginas/nova-lista/nova-lista.component";
+import { AppRoutingModule } from './app-routing.module';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { NovaListaComponent } from "./paginas/nova-lista/nova-lista.component";
     MatToolbarModule,
     MatIconModule,
     RouterModule,
-    NovaListaComponent
+    
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

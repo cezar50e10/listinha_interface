@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';  // Importe o RouterModule
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nova-lista',
@@ -8,6 +9,10 @@ import { RouterModule } from '@angular/router';  // Importe o RouterModule
   templateUrl: './nova-lista.component.html',
   styleUrls: ['./nova-lista.component.scss']
 })
+
+
+
 export class NovaListaComponent {
+  constructor(private route: ActivatedRoute) {}
   // Lógica do componente
 }

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module'; 
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     MatButtonModule,  
     MatToolbarModule,
-    AppRoutingModule  
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: []

@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   Title
-} from "./chunk-PBGUXN5Z.js";
+} from "./chunk-LUMXV6FC.js";
 import {
   DOCUMENT,
   HashLocationStrategy,
@@ -5942,4 +5942,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-FEVR34AN.js.map
+//# sourceMappingURL=chunk-NHCJHFME.js.map

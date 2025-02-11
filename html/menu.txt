@@ -1,0 +1,77 @@
+<!--
+Login
+  USU
+    Altera Cadastro
+    Agenda
+    Ajuda
+    Mensalidades
+  ADM
+    Usuario
+      Cadastro
+      Alteração
+    Controle De Acesso
+      Cadastro De Grupo De Usuario --grupo padrao, USER
+      Acesso As Paginas
+      Acesso Ao Conteudo
+      Permissão Usuario
+    Serviço Prestados
+      Cadastro
+      Alteração
+      Atribui Funcionario
+    Pacientes --aqui vai associar o paciente a um medico
+    Agenda
+    Comprovante de Pagto
+    Financeiro
+      Config Planos
+      Planos Alunos -- Acesso Ao Conteudo - somente perfis que sejam permitidos aparece aqui
+      Pagamentos - pagar manualmente ou dar baixa
+      
+
+-->
+INSERT INTO MENU (NOME,CLASSE,STATUS)VALUES
+ ('USER-MOL >> Agenda','menu_mol_usu_agenda','A')
+,('USER-MOL >> Meu Cadastro','menu_mol_usu_cadastro','A')
+,('USER-MOL >> Ajuda','menu_mol_usu_ajuda','A')
+,('USER-MOL >> Mensalidades','menu_mol_usu_mensalidade','A')
+,('ADM-MOL >> Usuarios','menu_mol_adm_usuarios','A')
+,('ADM-MOL >> Usuario >> Cadastro Usuario','menu_mol_adm_usuario_cad','A')
+,('ADM-MOL >> Usuario >> Alterar Usuario','menu_mol_adm_usuario_alt','A')
+,('ADM-MOL >> Controle Acesso','menu_mol_adm_controleacesso','A')
+,('ADM-MOL >> Controle Acesso >> Grupo Usuario','menu_mol_adm_controleacesso_grupousuario','A')
+,('ADM-MOL >> Controle Acesso >> Acesso Paginas','menu_mol_adm_controleacesso_acessopaginas','A')
+,('ADM-MOL >> Controle Acesso >> Acesso Conteudo','menu_mol_adm_controleacesso_acessoconteudo','A')
+,('ADM-MOL >> Controle Acesso >> Permissão Usuario','menu_mol_adm_controleacesso_permissaousuario','A')
+,('ADM-MOL >> Serviços Prestados','menu_mol_adm_servicosprestados','A')
+,('ADM-MOL >> Serviços Prestados >> Casdastro Serviço','menu_mol_adm_servicosprestados_cadastro','A')
+,('ADM-MOL >> Serviços Prestados >> Altera Serviço','menu_mol_adm_servicosprestados_altera','A')
+,('ADM-MOL >> Serviços Prestados >> Atribui Funcionario','menu_mol_adm_servicosprestados_atribuifuncionario','A')
+,('ADM-MOL >> Pacientes','menu_mol_adm_pacientes','A')
+,('ADM-MOL >> Agenda','menu_mol_adm_agenda','A')
+,('ADM-MOL >> Comprovantes','menu_mol_adm_comprovantes','A')
+,('ADM-MOL >> Financeiro','menu_mol_adm_financeiro','A') 
+,('ADM-MOL >> Financeiro >> Config Planos','menu_mol_adm_financeiro_configplanos','A') 
+,('ADM-MOL >> Financeiro >> Planos Alunos','menu_mol_adm_financeiro_planosalunos','A') 
+,('ADM-MOL >> Financeiro >> Pagamentos','menu_mol_adm_financeiro_pagamentos','A') 
+ 
+
+--contoles das paginas
+
+('ADM-MOL >> Serviços Prestados >> Atribui Funcionario','menu_mol_adm_servicosprestados_atribuifuncionario','A')
+  associa_servico_prestado_outros Permite associar à outro usuário
+('ADM-MOL >> Pacientes','menu_mol_adm_pacientes','A')
+  associa_paciente_outros Permite associar à outro usuário
+('ADM-MOL >> Agenda','menu_mol_adm_agenda','A')
+  consulta_agenda_outros Permite ver agenda de outros funcionarios
+('ADM-MOL >> Comprovantes','menu_mol_adm_comprovantes','A')  
+  consulta_agenda_outros Permite ver comprovante de outros funcionarios
+,('ADM-MOL >> Financeiro >> Planos Alunos','menu_mol_adm_financeiro_planosalunos','A') 
+  atribui_plano_financeiro Permite que determinado perfil possa adquirir um plano de pagamento
+
+
+INSERT INTO CONTROLE_CONTEUDO (CLASSE_MENU,CLASSE,DESCRICAO,STATUS)VALUES
+('menu_mol_adm_servicosprestados_atribuifuncionario','associa_servico_prestado_outros','Permite associar à outro usuário','A'),
+('menu_mol_adm_pacientes','associa_paciente_outros','Permite associar à outro usuário','A'),
+('menu_mol_adm_pacientes','permite_possuir_paciente','Permite Possuir Paciente','A'),
+('menu_mol_adm_agenda','consulta_agenda_outros','Permite ver agenda de outros funcionarios','A'),
+('menu_mol_adm_comprovantes','consulta_comprovante_outros','Permite ver comprovantes de outros funcionarios','A'),
+('menu_mol_adm_financeiro_planosalunos','atribui_plano_financeiro','Permite que determinado perfil possa adquirir um plano de pagamento','A')

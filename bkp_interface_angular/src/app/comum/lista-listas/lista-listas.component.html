@@ -1,0 +1,11 @@
+<div *ngIf="listasCadastradas && listasCadastradas.length > 0; else noData">
+    <ul>
+      <li *ngFor="let lista of listasCadastradas">
+        {{ lista }} <!-- Personalize conforme necessário -->
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noData>
+    <p>Não há listas de compras para exibir.</p>
+  </ng-template>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body>
+  <!-- HTML5 Input Form Elements -->
+  <input id="fileupload" type="file"  /> 
+  <button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+  <!-- Ajax JavaScript File Upload Logic -->
+  <script>
+  /*async function uploadFile() {
+  let formData = new FormData(); 
+  formData.append("file", fileupload.files[0]);
+  await fetch('register.php', {
+    method: "POST", 
+    body: formData
+  }); 
+  alert('The file has been uploaded successfully.');
+  }*/
+
+  function uploadFile() {
+let formData = new FormData(); 
+formData.append("arquivo", fileupload.files[0]);
+let obj = {
+	"DADOS":
+	{
+		"SERVICO_INVOCADO":"salvarComprovante",
+		"OBJETOS":{
+			"ID_CONSULTA":"2",
+      "DESCRICAO_IMG":"teste"
+		}
+	}
+}
+formData.append('objJson', JSON.stringify(obj));
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://192.168.1.111/Projetos/biriba/API/IntegraWSBiriba/ConverteITO.php', true);
+xhr.onload = function () {
+
+if (xhr.status === 200) {
+  console.log(xhr.responseText)
+  alert('File successfully uploaded')
+}else {
+  alert('File upload failed!');
+}
+}
+xhr.send(formData)
+  }
+
+  </script>
+</body>
+</html>

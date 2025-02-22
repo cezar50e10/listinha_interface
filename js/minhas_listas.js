@@ -1,26 +1,26 @@
-ativaMenu('menu_mol_adm_controleacesso',true,[['menu_mol_adm_controleacesso_grupousuario','flush-collapseControleAcesso']])
+ativaMenu('menu_minhas_listas',false)
 
-listarGrupoUsuario()
+listarListasDeComprasUsuario()
 
-function listarGrupoUsuario(){
+function listarListasDeComprasUsuario(){
     let obj=""
-    fazPost(URL_API,obj,"listarGrupoUsuario",retornoListarGrupoUsuario,false)
+    fazPost(URL_API_LISTA_DE_COMPRA,obj,"listar_por_usuario_logado",retornoListarListaDeCompra,false)
   }
-  function retornoListarGrupoUsuario(grupoUsuarioRetornados,erro){
+  function retornoListarListaDeCompra(listaDeCompraRetornados,erro){
    
-    //console.log(grupoUsuarioRetornados);
-    grupoUsuario = grupoUsuarioRetornados;
+    //console.log(listaDeCompraRetornados);
+    listaDeCompra = listaDeCompraRetornados;
     
-    let tabela = document.querySelector("#tabelaListagrupoUsuario");
+    let tabela = document.querySelector("#tabelaListaCompra");
     tabela.innerHTML="";
-    for(let i = 0;i < grupoUsuario.length;i++){  
-        //console.log(grupoUsuario[i])
+    for(let i = 0;i < listaDeCompra.length;i++){  
+        //console.log(listaDeCompra[i])
         let linha = document.createElement("tr");
         
         let colunaBtn = document.createElement("td");
         let btnVisualiza = document.createElement("btn")
         let icon = document.createElement("img")
-        icon.setAttribute('src', '../image/bootstrap-icons-1.8.3/hand-index.svg')
+        icon.setAttribute('src', 'image/bootstrap-icons-1.8.3/hand-index.svg')
         icon.setAttribute('width', '25')
         icon.setAttribute('height', '25')
 
@@ -31,7 +31,7 @@ function listarGrupoUsuario(){
         
         btnVisualiza.setAttribute('data-bs-toggle', 'modal')
         btnVisualiza.setAttribute('data-bs-target', '#modalAlteraGrupo')
-        btnVisualiza.setAttribute('onclick', 'exibeGrupoAlterado('+grupoUsuario[i]['ID']+',"'+grupoUsuario[i]['NOME']+'","'+grupoUsuario[i]['SIMBOLO']+'")')
+        btnVisualiza.setAttribute('onclick', 'exibeGrupoAlterado("")')//'+listaDeCompra[i]['ID']+',"'+listaDeCompra[i]['NOME']+'","'+listaDeCompra[i]['SIMBOLO']+'")')
 
         colunaBtn.appendChild(btnVisualiza)
         
@@ -40,12 +40,12 @@ function listarGrupoUsuario(){
 
         
         let colunaNome = document.createElement("td");
-        let textoNome = document.createTextNode(grupoUsuario[i]['NOME']);
+        let textoNome = document.createTextNode(listaDeCompra[i].nomeLista);
         colunaNome.appendChild(textoNome)
 
         
         let colunaSimbolo = document.createElement("td");
-        let textoSimbolo = document.createTextNode(grupoUsuario[i]['SIMBOLO']);
+        let textoSimbolo = document.createTextNode(listaDeCompra[i].descricaoLista);
         colunaSimbolo.appendChild(textoSimbolo)
         
         linha.appendChild(colunaBtn); 
@@ -56,20 +56,20 @@ function listarGrupoUsuario(){
     }
   }
 
-  function cadastrarGrupo(){
+  function cadastrarLista(){
     let obj={
-      "NOME": document.getElementById('nomeGrupo').value,
-      "SIMBOLO": document.getElementById('simboloGrupo').value
+      "nome": document.getElementById('nomeLista').value,
+      "descricao": document.getElementById('descricaoLista').value
     }
-    bloqueiaBtnCarregando('btnCadastrarGrupo')
-    fazPost(URL_API,obj,"cadastraGrupoUsuario",retornoCadastrarGrupo,false,'btnCadastrarGrupo')
+    bloqueiaBtnCarregando('btnCadastrarLista')
+    fazPost(URL_API_LISTA_DE_COMPRA,obj,"cria_nova_lista",retornoCadastrarLista,false,'btnCadastrarLista')
   }
 
-  function retornoCadastrarGrupo(objetosRetornados,erro){
-    listarGrupoUsuario()
-    exibeMsgSucesso("Grupo de Usuario Foi Cadastrado Com Sucesso!")
-    document.getElementById('nomeGrupo').value = ""
-    document.getElementById('simboloGrupo').value = ""
+  function retornoCadastrarLista(objetosRetornados,erro){
+    listarListasDeComprasUsuario()
+    exibeMsgSucesso("Lista de Compra Foi Cadastrada Com Sucesso!")
+    document.getElementById('nomeLista').value = ""
+    document.getElementById('descricaoLista').value = ""
   }
    
 function exibeGrupoAlterado(id,nome,simbolo){
@@ -86,11 +86,11 @@ function alterarGrupo(){
   }
   bloqueiaBtnCarregando('alterarGrupo')
   bloqueiaBtnCarregando('fecharAltera')
-  fazPost(URL_API,obj,"alterarGrupoUsuario",retornoAlterarGrupoUsuario,true)
+  fazPost(URL_API,obj,"alterarListaDeCompra",retornoAlterarListaDeCompra,true)
 }
 
-function retornoAlterarGrupoUsuario(objetosRetornados,erro){
-  listarGrupoUsuario()
+function retornoAlterarListaDeCompra(objetosRetornados,erro){
+  listarListaDeCompra()
   exibeMsgSucesso("Grupo de Usuario Foi Alterado Com Sucesso!")
   
 }

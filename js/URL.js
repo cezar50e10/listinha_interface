@@ -1,6 +1,9 @@
 const URL_PRE_FIXO = "/Projetos/biriba/"
 const URL_API= "http://localhost:8080/";
 const URL_API_USUARIO = URL_API+"usuario/";
+const URL_API_LISTA_DE_COMPRA = URL_API+"lista_de_compra/";
+const URL_PAGE_MINHAS_LISTAS = "minhas_listas";
+
 const URL_CAD_USER = URL_PRE_FIXO+"interface/html/cadastro_usuario.html"
 const URL_LOGIN = URL_PRE_FIXO+"interface/index.html"
 const URL_SOL_RECUPERA_SENHA = URL_PRE_FIXO+"interface/html/solicita_recuperacao_senha.html"

@@ -17,7 +17,7 @@ function retornoLogin(objRetorno,erro){
     includeHTML()
   }
 }
-
+/*
 function reenviaConfirmacao(){
   bloqueiaBtnCarregando('btnReenviaConfirmacaoEmail')
   bloqueiaBtnCarregando('btnLoginUsuario')
@@ -33,3 +33,4 @@ function retornoReenviaConfirmacao(objRetorno,erro){
   exibeMsgSucesso("Email de Confirmação Enviado Novamente! - Verifique Seu Email para confirmar o Cadastro!")
 }
 
+*/

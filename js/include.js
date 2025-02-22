@@ -1,5 +1,6 @@
 // Função que executa scripts sequencialmente
 let loadedScripts = [];
+const alertAPI = '<div id="mensagem-retorno-API" class="alert mt-2 mb-2" role="alert"></div>';
 
 async function executeScriptsSequentially(scripts) {
   for (const oldScript of scripts) {
@@ -31,14 +32,16 @@ async function executeScriptsSequentially(scripts) {
 
 
 // Função auxiliar para carregar e inserir HTML
-async function loadAndInsert(url, insertFn, checkId) {
+async function loadAndInsert(url, insertFn, checkId,containerAPI) {
   if (document.getElementById(checkId)) return;
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Falha ao carregar ${url}`);
 
-  const htmlText = await res.text();
+  let htmlText = await res.text();
   const temp = document.createElement("div");
+  htmlText = htmlText+containerAPI;
+
   temp.innerHTML = htmlText;
 
   const scripts = Array.from(temp.querySelectorAll("script"));
@@ -56,14 +59,14 @@ async function includeHTML() {
   const body = document.body;
   body.innerHTML = "";
   try {
-    await loadAndInsert("modulos/topo.html", html => document.body.insertAdjacentHTML("afterbegin", html), "topo");
-    await loadAndInsert("modulos/menu.html", html => document.body.insertAdjacentHTML("beforeend", html), "menu");
+    await loadAndInsert("modulos/topo.html", html => document.body.insertAdjacentHTML("afterbegin", html), "topo","");
+    await loadAndInsert("modulos/menu.html", html => document.body.insertAdjacentHTML("beforeend", html), "menu",alertAPI);
 
     if (!document.getElementById("content")) {
       document.body.insertAdjacentHTML("beforeend", `<main id="content"></main>`);
     }
 
-    await loadAndInsert("modulos/rodape.html", html => document.body.insertAdjacentHTML("beforeend", html), "rodape");
+    await loadAndInsert("modulos/rodape.html", html => document.body.insertAdjacentHTML("beforeend", html), "rodape","");
     await loadPage("usr_inicio");
 
     document.querySelectorAll("[data-page]").forEach(link => {
@@ -98,7 +101,7 @@ async function loadPage(page) {
       script.remove();
     }
 
-    content.innerHTML = temp.innerHTML;
+    content.innerHTML = alertAPI+temp.innerHTML;
     await executeScriptsSequentially(scripts);
 
   } catch (error) {
@@ -134,23 +137,6 @@ async function loadPageSolo(pagina) {
     body.innerHTML = "<p>Erro ao carregar a tela de login.</p>";
   }
 }
-
-// Verifica se o usuário está autenticado
-function isAuthenticated() {
-  return localStorage.getItem("user_logged") === "true";
-}
-
-// Função de login
-//function login() {
-//  localStorage.setItem("user_logged", "true");
-//  startApplication();
-//}
-
-// Função para iniciar a aplicação após login
-//async function startApplication() {
-//  document.body.innerHTML = "";
-//  await includeHTML();
-//}
 
 // Se o usuário já estiver logado, carrega os módulos, senão carrega a tela de login
 document.addEventListener("DOMContentLoaded", async () => {

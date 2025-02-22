@@ -15,20 +15,8 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 ===================FUNÇÕES DO PAINEL DE CONTROLE========================================
 ========================================================================================
 */
-function verificaUsuarioLogado(){
-  console.log("sim passou")
-  let obj = ""
-fazPost(URL_API,obj,"temUsuarioLogado",retornoVerificaUsuarioLogado,true)
-}
-function retornoVerificaUsuarioLogado(objRetorno,erro){
-  if(erro){
-    alert(objRetorno['OBJETO_RETORNO']['MENSAGEM'])
-    redireciona(URL_LOGIN)   
-  }else{
-    trazUsuarioSession(retornoListaGrupoUsuarioLogado)
-    //listarProdutosExibirCardapio()
-  }
-}
+
+
 
 function deslogar(){
   let obj = ""
@@ -106,7 +94,7 @@ function fechaCardapio(){
 }
 
 
-
+/*
 function listarProdutosExibirCardapio(){
   let obj = ""
   fazPost(URL_API,obj,"listarProdutos",retornoListarProdutosExibirCardapio,false)
@@ -219,7 +207,7 @@ function somaTempo(campoDestino,tempo,ehSoma){
     }
   }
   document.getElementById(campoDestino).value = hora+":"+minuto
-}
+}*/
 /*
 ========================================================================================
 ===================FUNÇÕES DO MENU======================================================

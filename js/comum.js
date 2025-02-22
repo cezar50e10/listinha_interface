@@ -23,9 +23,9 @@ function fazPost(url,objetoEnvio,servicoInvocado,callBack,trataErro,btnDesbloque
  requisicao.open('POST', url, true); //true = assincrono
  
   // Habilita 'withCredentials' somente para as requisições que não sejam de login
-  if (!servicoInvocado.includes('login')) {
+  //if (!servicoInvocado.includes('login')) {
     requisicao.withCredentials = true;  // Isso garante o envio de cookies para requisições subsequentes
-  }
+  //}
 
  requisicao.setRequestHeader("Content-Type", "application/json");
  try {
@@ -224,8 +224,9 @@ function stopDefAction(evt) {
   evt.preventDefault();
 }
 
-function redireciona(URL){
-  window.location.href = URL
+function redireciona(pagina){
+  //window.location.href = URL
+  loadPage(pagina)
 }
 
 
@@ -484,3 +485,21 @@ function mascaraCPF(idInput){
     e.target.value = value;
 });
 }
+
+function verificaUsuarioLogado(){
+  let obj = "{}"
+fazPost(URL_API_USUARIO,obj,"verificar-sessao",retornoVerificaUsuarioLogado,true)
+}
+
+function retornoVerificaUsuarioLogado(objRetorno,erro){
+  //console.log(objRetorno);
+
+  if(erro){
+    alert(objRetorno.mensagem)
+    loadPageSolo('login')
+  }else{
+    includeHTML() // vai para painel de controle
+  }
+}
+
+window.onload = verificaUsuarioLogado();
